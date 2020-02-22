@@ -7,7 +7,7 @@ import "../App.css";
 function programCards(props) {
   return (
     <div className="channelsContainer">
-      {props.data.map((item, key) => (
+      {props.channels.map((item, key) => (
         <div key={key} className="channelItem">
           <div className="channelTop">
             <h1>{item.name}</h1>
@@ -15,7 +15,7 @@ function programCards(props) {
               <FontAwesomeIcon icon={faStar} />
             </button>
           </div>
-          <img src={item.logos[7].url} alt="logo of " {...item.name}></img>
+          <img src={item.logos[7].url} alt={"logo of " + item.name}></img>
           <p className="channelDescription">{item.description}</p>
         </div>
       ))}
