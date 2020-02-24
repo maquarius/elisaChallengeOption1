@@ -77,5 +77,8 @@
   color: white;
 }
 
+.liveProgrammeContainer {
+  border: 1px solid white;
+}
 .channelItem {
 }
