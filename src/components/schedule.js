@@ -17,7 +17,7 @@ function Schedule(props) {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        setFutureProgrammes(data.schedule);
+        setFutureProgrammes(data.schedule[0]);
         console.log(futureProgrammes);
       });
   };
@@ -31,58 +31,66 @@ function Schedule(props) {
     console.log(props.channels);
   };
 
-  const logCurrentChannels = event => {
+  const logCurrentRequest = event => {
     console.log(url);
   };
 
   return (
     <div className="scheduleContainer">
-      <form>
-        <label htmlFor="requestedDate">Select a date:</label>
-        <input
-          type="date"
-          id="requestedDate"
-          name="date"
-          value={request.date}
-          onChange={e => handleChange(e)}
-        ></input>
+      <label htmlFor="requestedDate">Select a date:</label>
+      <input
+        type="date"
+        id="requestedDate"
+        name="date"
+        value={request.date}
+        onChange={e => handleChange(e)}
+      ></input>
 
-        <label htmlFor="requestedChannel">Select a channel:</label>
-        <select
-          id="requestedChannel"
-          value={request.channelId}
-          name="channelId"
-          onChange={e => handleChange(e)}
-        >
-          {props.channels.map((item, key) => (
-            <option key={key} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        <input type="hidden" name="answer" id="answerInput-hidden"></input>
-        <input
-          type="submit"
-          value="find schedule"
-          onClick={() => fetchSchedule()}
-        ></input>
-      </form>
+      <label htmlFor="requestedChannel">Select a channel:</label>
+      <select
+        id="requestedChannel"
+        value={request.channelId}
+        name="channelId"
+        onChange={e => handleChange(e)}
+      >
+        {props.channels.map((item, key) => (
+          <option key={key} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+      </select>
+      <button value="find schedule" onClick={() => fetchSchedule()}>
+        load
+      </button>
 
       <button onClick={() => logCurrentId()}>Current id</button>
 
-      <button onClick={() => logCurrentChannels()}>current channels</button>
+      <button onClick={() => logCurrentRequest()}>Log request url</button>
 
       <div>
-        {futureProgrammes.length ? (
-          futureProgrammes.programs.map((item, key) => (
-            <div key={key} className="liveProgrammeContainer">
-              <div className="liveProgrammeTop"></div>
-              <p className="channelDescription">{item.programs.id}</p>
-            </div>
-          ))
-        ) : (
-          <p>Nothin</p>
-        )}
+        <h2>
+          The programme schedule for {request.channelId} on {request.date}
+        </h2>
+        <div className="programmesContainer">
+          {futureProgrammes.programs ? (
+            futureProgrammes.programs.map((item, key) => (
+              <div key={key} className="liveProgrammeContainer">
+                <p>
+                  From: {item.startTime} Till: {item.endTime}{" "}
+                </p>
+                <div className="liveProgrammeTop"></div>
+                <p className="channelDescription">{item.name}</p>
+                <img
+                  src={item.thumbnails[0].url}
+                  alt={"thumbnail of" + item.name}
+                ></img>
+                <p>{item.shortDescription}</p>
+              </div>
+            ))
+          ) : (
+            <p>Nothin</p>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -79,6 +79,20 @@
 
 .liveProgrammeContainer {
   border: 1px solid white;
+  width: 400px;
+}
+
+.programmesContainer {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .channelItem {
+}
+
+footer {
+  background-color: rgb(30, 30, 31);
+  color: white;
 }

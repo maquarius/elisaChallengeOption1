@@ -1,14 +1,23 @@
 import React from "react";
 import SearchBar from "./searchbar";
+
+import { Link } from "react-router-dom";
 function header() {
   return (
-    <div className="header">
-      <h1>Elisa logo</h1>
+    <nav className="header">
+      <Link to="/">
+        <h1>Elisa logo</h1>
+      </Link>
       <SearchBar />
-      <p className="tab">Live programs</p>
-      <p className="tab">Schedules</p>
-      <p className="tab">Your favorites</p>
-    </div>
+      <ul>
+        <li>
+          <Link to="/schedule">Schedule</Link>
+        </li>
+        <li>
+          <Link to="/favorites">favorites</Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
