@@ -5,16 +5,30 @@ import { Link } from "react-router-dom";
 function header() {
   return (
     <nav className="header">
-      <Link to="/">
+      <Link style={{ textDecoration: "none", color: "blue" }} to="/">
         <h1>Elisa logo</h1>
       </Link>
-      <SearchBar />
-      <ul>
+      <ul className="listContainer">
         <li>
-          <Link to="/schedule">Schedule</Link>
+          <Link style={{ textDecoration: "none", color: "blue" }} to="/home">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/favorites">favorites</Link>
+          <Link
+            style={{ textDecoration: "none", color: "blue" }}
+            to="/schedule"
+          >
+            Schedule
+          </Link>
+        </li>
+        <li>
+          <Link
+            style={{ textDecoration: "none", color: "blue" }}
+            to="/favorites"
+          >
+            favorites
+          </Link>
         </li>
       </ul>
     </nav>

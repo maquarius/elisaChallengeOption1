@@ -8,7 +8,7 @@ function footer() {
         pre-assignment.
       </p>
       <p>The following data or designs are provided externally:</p>
-      <ul>
+      <ul className="footerListContainer">
         <li>The "live" icon </li>
       </ul>
       <p>This assignment is made by Marius van der Busse</p>

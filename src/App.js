@@ -32,6 +32,7 @@ function App() {
         console.log(data.schedule);
       });
   };
+
   return (
     <div className="App">
       <Router>
@@ -39,19 +40,27 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/"
+            path={["/", "/home"]}
             render={props => (
               <Homepage
+                {...props}
+                channels={channels}
+                liveProgrammes={liveProgrammes}
+                setLiveProgrammes={setLiveProgrammes}
+              />
+            )}
+          />
+          <Route
+            path="/schedule"
+            render={props => (
+              <Schedule
                 {...props}
                 channels={channels}
                 liveProgrammes={liveProgrammes}
               />
             )}
           />
-          <Route
-            path="/schedule"
-            render={props => <Schedule {...props} channels={channels} />}
-          />
+
           <Route return={() => <h1>Page not found</h1>} />
         </Switch>
       </Router>
