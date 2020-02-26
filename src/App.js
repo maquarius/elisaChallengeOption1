@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Homepage from "./components/Homepage";
 import Header from "./components/header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Schedule from "./components/schedule";
 import Footer from "./components/footer";
 

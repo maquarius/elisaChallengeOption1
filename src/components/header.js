@@ -1,5 +1,4 @@
 import React from "react";
-import SearchBar from "./searchbar";
 
 import { Link } from "react-router-dom";
 function header() {
@@ -20,14 +19,6 @@ function header() {
             to="/schedule"
           >
             Schedule
-          </Link>
-        </li>
-        <li>
-          <Link
-            style={{ textDecoration: "none", color: "blue" }}
-            to="/favorites"
-          >
-            favorites
           </Link>
         </li>
       </ul>

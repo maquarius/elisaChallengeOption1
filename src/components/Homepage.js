@@ -17,7 +17,7 @@ function Homepage(props) {
         }
       }
     } else {
-      return <p>No programme available</p>;
+      return <p>No IMG available</p>;
     }
   };
 
@@ -36,9 +36,13 @@ function Homepage(props) {
     }
   };
 
+  /* This was supposed to remove the data which don't have data in the array.
   const getCurrentChannels = () => {
     for (let i = 0; props.liveProgrammes.length > i; i++) {
       if (typeof props.liveProgrammes.programs !== "undefined") {
+
+  the scrambled being false gave me the impression that those channels are available over cable.
+  I was planning on showing different price tiers, but i couldn't make the previous work.
         if (props.liveProgrammes.channel.scrambled === false) {
           return (
             <div>
@@ -52,14 +56,22 @@ function Homepage(props) {
         return <p>This doesnt work</p>;
       }
     }
+  };*/
+
+  const getTime = item => {
+    if (item.programs.length > 0) {
+      let endTime = item.programs[0].endTime;
+      let beginTime = item.programs[0].startTime;
+      endTime = endTime.substring(11);
+      beginTime = beginTime.substring(11);
+      return beginTime + " - " + endTime;
+    } else {
+      return <p> no end time</p>;
+    }
   };
 
   return (
     <div>
-      <h1>Elisa offers the following channels for free:</h1>
-
-      <div>{getCurrentChannels()}</div>
-
       <h1>
         Over {props.liveProgrammes.length} different programmes available!
       </h1>
@@ -70,8 +82,9 @@ function Homepage(props) {
             {" "}
             <div className="channelName">{getChannel(item)}</div>
             <div>{getImg(item)}</div>
+            <p>Now Live:</p>
             <div className="programName">{getTitle(item)}</div>
-            <p>{key}</p>
+            <div className="endTimeProgram">{getTime(item)}</div>
           </div>
         ))}
         {/*<Channelcards channels={channels} changeChannel={setChannels} />*/}

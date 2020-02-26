@@ -34,59 +34,26 @@ footer {
   color: white;
 }
 
-/*specific schedule CSS*/
-.searchContainer {
-  flex: 3;
-}
-
-.tab {
-  flex: 1;
-  border: 2px solid snow;
-  margin-left: 5px;
-  text-align: center;
-  margin: auto;
-}
-
-.channelsContainer {
+/*schedule CSS*/
+.inputContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
 }
 
-.channelItem {
-  border: 3px solid grey;
-  width: 400px;
-  margin: 5px;
-  box-shadow: 6px 6px 3px black;
-  transition: 0.3s;
-  background-color: white;
+.inputDiv {
+  margin: 10px;
+}
+#requestedDate {
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.channelItem:hover {
-  box-shadow: 6px 6px 3px black;
-  border: 3px solid rgb(83, 20, 155);
-}
+#requestedChannel {
+  padding: 10px;
 
-.channelTop {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  border-radius: 10px;
 }
-
-.iconButton {
-  background-color: red;
-  border: none;
-  color: yellowgreen;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.channelDescription {
-  color: white;
-}
-
 .programmesContainer {
   display: flex;
   flex-direction: row;
@@ -96,35 +63,33 @@ footer {
 
 .liveProgrammeContainer {
   border: 1px solid white;
+  border-radius: 10px;
   width: 400px;
   margin: 10px;
   box-shadow: 5px 10px 10px black;
 }
 
-.channelItem {
+.channelName {
+  color: white;
 }
 
-/*live programme CSS, Homepage*/
+/*Homepage css*/
 
 .liveContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin: 20px;
 }
 
 .liveChannelContainer {
+  border: 1px solid white;
+  border-radius: 5px;
   width: 200px;
   height: 300px;
   margin: 10px;
-  border: 1px solid white;
 }
 .channelName {
   font-size: 20px;
   font-weight: 700;
-}
-
-.footerListContainer {
-  list-style-type: none;
-  text-decoration: none;
 }
