@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/elisaViihde/static/css/main.7a8725aa.chunk.css",
+    "main.js": "/elisaViihde/static/js/main.a2437a5f.chunk.js",
+    "main.js.map": "/elisaViihde/static/js/main.a2437a5f.chunk.js.map",
+    "runtime-main.js": "/elisaViihde/static/js/runtime-main.727138d1.js",
+    "runtime-main.js.map": "/elisaViihde/static/js/runtime-main.727138d1.js.map",
+    "static/js/2.44f1706c.chunk.js": "/elisaViihde/static/js/2.44f1706c.chunk.js",
+    "static/js/2.44f1706c.chunk.js.map": "/elisaViihde/static/js/2.44f1706c.chunk.js.map",
+    "index.html": "/elisaViihde/index.html",
+    "precache-manifest.0b055ef3ac159a6573bca4a488f21e48.js": "/elisaViihde/precache-manifest.0b055ef3ac159a6573bca4a488f21e48.js",
+    "service-worker.js": "/elisaViihde/service-worker.js",
+    "static/css/main.7a8725aa.chunk.css.map": "/elisaViihde/static/css/main.7a8725aa.chunk.css.map",
+    "static/js/2.44f1706c.chunk.js.LICENSE.txt": "/elisaViihde/static/js/2.44f1706c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.727138d1.js",
+    "static/js/2.44f1706c.chunk.js",
+    "static/css/main.7a8725aa.chunk.css",
+    "static/js/main.a2437a5f.chunk.js"
+  ]
+}
