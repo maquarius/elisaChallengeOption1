@@ -4,24 +4,30 @@ function Schedule(props) {
   const [futureProgrammes, setFutureProgrammes] = useState([]);
   const [request, setRequest] = useState({
     date: "",
-    channelId: 37
+    channelId: 37,
+    channelName: ""
   });
 
   useEffect(() => {
     setTodayDate();
   }, []);
 
+  useEffect(() => {
+    fetchSchedule();
+    console.log(request.date);
+  }, [request]);
+
   const setTodayDate = () => {
     let today = new Date();
-    let dd = today.getDate();
+    let dd = 22;
     let mm = ("0" + (today.getMonth() + 1)).slice(-2);
     let yyyy = today.getFullYear();
     let date = yyyy + "-" + mm + "-" + dd;
     setRequest({ ...request, date: date });
-    fetchSchedule();
+    console.log(date);
   };
 
-  const url =
+  let url =
     "https://rest-api.elisaviihde.fi/rest/epg/schedule?channelId=" +
     request.channelId +
     "&date=" +
@@ -48,67 +54,129 @@ function Schedule(props) {
     }
   };
 
-  return (
-    <div className="scheduleContainer">
-      <h3>
-        Welcome to the schedule checker. Select a future or past date and a
-        channel to checl their schedule
-      </h3>
-      <div>
-        <label htmlFor="requestedDate">Select a date:</label>
-        <input
-          type="date"
-          id="requestedDate"
-          name="date"
-          value={request.date}
-          onChange={e => handleChange(e)}
-        ></input>
-        <label htmlFor="requestedChannel">Select a channel:</label>
-        <select
-          id="requestedChannel"
-          value={request.channelId}
-          name="channelId"
-          onChange={e => handleChange(e)}
-        >
-          {props.channels.map((item, key) => (
-            <option key={key} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        <button value="find schedule" onClick={() => fetchSchedule()}>
-          Search
-        </button>
-      </div>
-      <div>
-        <h2>
-          The programme schedule for {getChannelName()} on {request.date}
-        </h2>
-        <div className="programmesContainer">
-          {futureProgrammes.programs ? (
-            futureProgrammes.programs.map((item, key) => (
-              <div key={key} className="liveProgrammeContainer">
-                <p>
-                  From: {item.startTime.substring(11)} Untill:{" "}
-                  {item.endTime.substring(11)}{" "}
-                </p>
-                <div className="liveProgrammeTop"></div>
-                <p className="channelDescription">{item.name}</p>
-                <img
-                  src={item.thumbnails[1].url}
-                  alt={"thumbnail of" + item.name}
-                  width="400"
-                ></img>
-                <p>{item.shortDescription}</p>
-              </div>
-            ))
-          ) : (
-            <p>Nothin</p>
-          )}
+  if (request.date >= new Date()) {
+    return (
+      <div className="scheduleContainer">
+        <h3>
+          Welcome to the schedule checker. Select a future or past date and a
+          channel to checl their schedule. DATE IS AFTER TODAY
+        </h3>
+        <div>
+          <label htmlFor="requestedDate">Select a date:</label>
+          <input
+            type="date"
+            id="requestedDate"
+            name="date"
+            value={request.date}
+            onChange={e => handleChange(e)}
+          ></input>
+          <input
+            type="hidden"
+            id="channelName"
+            name="channelName"
+            value={getChannelName()}
+            onChange={e => handleChange(e)}
+          ></input>
+          <label htmlFor="requestedChannel">Select a channel:</label>
+          <select
+            id="requestedChannel"
+            value={request.channelId}
+            name="channelId"
+            onChange={e => handleChange(e)}
+          >
+            {props.channels.map((item, key) => (
+              <option key={key} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+          <button value="find schedule" onClick={() => fetchSchedule()}>
+            Search
+          </button>
+        </div>
+        <div>
+          <h2>
+            The programme schedule for {request.channelName} on {request.date}
+          </h2>
+          <div className="programmesContainer">
+            {futureProgrammes.programs ? (
+              futureProgrammes.programs.map((item, key) => (
+                <div key={key} className="liveProgrammeContainer">
+                  <p>
+                    From: {item.startTime.substring(11)} Untill:{" "}
+                    {item.endTime.substring(11)}{" "}
+                  </p>
+                  <div className="liveProgrammeTop"></div>
+                  <p className="channelDescription">{item.name}</p>
+                  <p>{item.shortDescription}</p>
+                </div>
+              ))
+            ) : (
+              <p>Nothin</p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="scheduleContainer">
+        <h3>
+          Welcome to the schedule checker. Select a future or past date and a
+          channel to checl their schedule
+        </h3>
+        <div>
+          <label htmlFor="requestedDate">Select a date:</label>
+          <input
+            type="date"
+            id="requestedDate"
+            name="date"
+            value={request.date}
+            onChange={e => handleChange(e)}
+          ></input>
+          <label htmlFor="requestedChannel">Select a channel:</label>
+          <select
+            id="requestedChannel"
+            value={request.channelId}
+            name="channelId"
+            onChange={e => handleChange(e)}
+          >
+            {props.channels.map((item, key) => (
+              <option key={key} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <h2>
+            The programme schedule for {request.channelName} on {request.date}
+          </h2>
+          <div className="programmesContainer">
+            {futureProgrammes.programs ? (
+              futureProgrammes.programs.map((item, key) => (
+                <div key={key} className="liveProgrammeContainer">
+                  <p>
+                    From: {item.startTime.substring(11)} Untill:{" "}
+                    {item.endTime.substring(11)}{" "}
+                  </p>
+                  <div className="liveProgrammeTop"></div>
+                  <p className="channelDescription">{item.name}</p>
+                  <img
+                    src={item.thumbnails[1].url}
+                    alt={"thumbnail of" + item.name}
+                    width="400"
+                  ></img>
+                  <p>{item.shortDescription}</p>
+                </div>
+              ))
+            ) : (
+              <p>Nothin</p>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
-
 export default Schedule;
